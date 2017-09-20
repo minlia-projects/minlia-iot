@@ -9,7 +9,7 @@
 
   <groupId>com.minlia.iot</groupId>
   <artifactId>minlia-iot</artifactId>
-  <version>1.0.3.RELEASE</version>
+  <version>1.0.4-SNAPSHOT</version>
   <name>Minlia IOT</name>
 
   <dependencies>
@@ -146,7 +146,7 @@
       scm:git:https://github.com/minlia-projects/minlia-iot.git
     </developerConnection>
     <url>https://github.com/minlia-projects/minlia-iot</url>
-    <tag>minlia-iot-1.0.3.RELEASE</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
