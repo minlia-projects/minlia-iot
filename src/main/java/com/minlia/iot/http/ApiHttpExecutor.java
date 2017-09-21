@@ -2,6 +2,8 @@ package com.minlia.iot.http;
 
 import com.minlia.iot.requestor.HttpRequestMethod;
 import java.net.HttpURLConnection;
+import java.util.List;
+import org.apache.http.Header;
 
 /**
  * Created by will on 9/10/17.
@@ -29,5 +31,7 @@ public interface ApiHttpExecutor {
 
   HttpResponse execute(String url,HttpRequestMethod method, String raw,String encoding);
 
-   void customConnection(HttpURLConnection connection);
+//  @Deprecated
+//  void customConnection(HttpURLConnection connection);
+  List<Header> customHeader();
 }
