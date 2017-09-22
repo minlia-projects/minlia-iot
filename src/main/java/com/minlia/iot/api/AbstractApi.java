@@ -1,5 +1,9 @@
 package com.minlia.iot.api;
 
+
+import static com.minlia.iot.code.IotApiCode.NOT_NULL;
+
+import com.minlia.cloud.utils.ApiPreconditions;
 import com.minlia.iot.config.ApiCredentialConfiguration;
 import com.minlia.iot.config.ApiEndpointConfiguration;
 import com.minlia.iot.context.ApiRuntimeContext;
@@ -11,7 +15,7 @@ import java.util.Optional;
 /**
  * Created by will on 9/17/17.
  */
-public class AbstractApi implements Api {
+public abstract class AbstractApi implements Api {
 
   public AbstractApi sandbox(Boolean sandbox) {
     apiRuntimeContext.setSandbox(sandbox);
@@ -30,17 +34,25 @@ public class AbstractApi implements Api {
     ApiClientListener listener = new ApiClientListenerAdapter();
 
     apiRuntimeContext = new ApiRuntimeContext();
+    apiRuntimeContext.setEncoding(ApiRuntimeContext.DEFAULT_CHARSET);
     apiRuntimeContext.setListener(listener);
     apiRuntimeContext.setListenerOptional(Optional.ofNullable(listener));
 
+    //默认为POST方法请求
     apiRuntimeContext.setHttpRequestMethod(HttpRequestMethod.POST);
 
     this.apiRuntimeContext.addAllApiCrenditialConfigurations(apiCredentialConfiguration);
     this.apiRuntimeContext.addAllApiEndpointConfigurations(apiEndpointConfiguration);
+
+
+    //默认不需要签名
+    apiRuntimeContext.setSignatureRequired(Boolean.FALSE);
+    //默认不需要签名验证
+    apiRuntimeContext.setSignatureVerificationRequired(Boolean.FALSE);
+
   }
 
   public AbstractApi() {
-    throw new RuntimeException("请使用带参构造方法初始化");
   }
 
 }
